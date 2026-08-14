@@ -33,3 +33,24 @@ Run the script from PowerShell:
 ```powershell
 .\AD-Windows-Inventory.ps1# AD-Windows-Inventory
 PowerShell script for collecting Windows hardware and OS inventory from Active Directory computers using WinRM and CIM.
+
+The generated inventory will be saved as:
+inventory.csv
+How it works
+Active Directory
+       ↓
+Get-ADComputer
+       ↓
+Windows computers
+       ↓
+Invoke-Command / WinRM
+       ↓
+Get-CimInstance
+       ↓
+PSCustomObject
+       ↓
+Export-Csv
+       ↓
+inventory.csv
+Notes
+The generated CSV file may contain internal computer names, hardware information and serial numbers, so it should not be committed to a public repository.
